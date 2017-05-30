@@ -50,3 +50,17 @@ Before Java 8 all we could do was to mimic functional style programming in Java.
 	- functions take functions as parameter or returns function
 - before Java 8 anonymous classes were used for behavior passing
 
+Every Lambda expression corresponds to a Anonymous inner class. This is called Functional Interface. Basicly we call an interface Functional if it has only one abstract method.
+
+A lambda expression looks like
+```
+( method's parameter ) -> ( method's body ) 
+```
+
+And a Functional Interface looks like
+```
+@FunctionalInterface
+public interface Runnable {
+     public abstract void run();
+}
+```
