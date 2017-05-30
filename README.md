@@ -27,3 +27,17 @@ Java8 Basics and Pragmatic Usage with Examples
 - static methods 
 	- only be called through the interface or class type reference, not an instance variable
 	- can not be overridden as it is for normal static methods	 
+
+### Functional Programming Paradigm
+
+Before Java 8 all we could do was to mimic functional style programming in Java. You would use anonymous inner classes to pass behavior to methods, classes. Or you would use libraries such as Guava in order to support functional programming. Higher order functions were not supported. With the help of Lambdas, java.util.Function package in Java 8, things changed.
+
+### Lambdas
+
+- functional style programming (imperative(procedural) -> declarative(functional))
+- make your code concise (short but easily understandable ?) 
+- allow to pass behavior
+- higher order programming
+	- functions take functions as parameter or returns function
+- before Java 8 anonymous classes were used for behavior passing
+
