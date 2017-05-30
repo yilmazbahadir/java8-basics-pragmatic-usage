@@ -36,7 +36,8 @@ Functional programming is a type of declarative programming. Prior to Java 8, Ja
 | Imperative        | Functional |
 | ------------- |:-------------:|
 | A developer writes code in exact order the steps that the computer must take to accomplish a goal.   | Developer must functionalize the code and compose them to be executed by computer. |
-| ```java int[] array = new int[] { 
+| ```java 
+int[] array = new int[] { 
     1, 2, 3, 4, 5, 6, 7, 8, 8, 8, 9, 10
 };
  
@@ -56,7 +57,9 @@ for (int j = 0; j < array.length; j++)
         }
     }
 }
-```| ```java int[] array = new int[] { 
+```
+| ```java 
+int[] array = new int[] { 
     1, 2, 3, 4, 5, 6, 7, 8, 8, 8, 9, 10
 };
  
@@ -75,7 +78,7 @@ IntStream.of(array)
                   .stream()
                   .collect(summingInt(i -> i)));
          }); 
-         ```|
+```|
 
 
 
