@@ -42,6 +42,7 @@ Functional programming is a type of declarative programming. Prior to Java 8, Ja
 Before Java 8 all we could do was to mimic functional style programming in Java. You would use anonymous inner classes to pass behavior to methods, classes. Or you would use libraries such as Guava in order to support functional programming. Higher order functions were not supported. With the help of Lambdas, java.util.Function package in Java 8, things changed.
 
 |Characteristic |Imperative  |Functional |
+|-----|-----|-----|
 | Programmer focus	| How to perform tasks (algorithms) and how to track changes in state.	|What information is desired and what transformations are required.|
 |State changes	 |Important.	 |Non-existent. |
 | Order of execution	|Important.	 |Low importance. |
