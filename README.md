@@ -36,7 +36,7 @@ Functional programming is a type of declarative programming. Prior to Java 8, Ja
 | Imperative        | Functional |
 | ----------------- |------------|
 | A developer writes code in exact order the steps that the computer must take to accomplish a goal.   | Developer must functionalize the code and compose them to be executed by computer. |
-| int[] array = new int[] {    1, 2, 3, 4, 5, 6, 7, 8, 8, 8, 9, 10 }; | the other part |
+| int[] array = new int[] {     1, 2, 3, 4, 5, 6, 7, 8, 8, 8, 9, 10 }; int sum = 0; for (int j = 0; j < array.length; j++) { for (int k = j + 1; k < array.length; k++) { if (k != j && array[k] == array[j])       {             sum = sum + array[k];            System.out.println(                "Duplicate found: "              + array[k]              + " "              + "Sum of the duplicate value is " + sum);        }    }}| the other part |
 
 
 Before Java 8 all we could do was to mimic functional style programming in Java. You would use anonymous inner classes to pass behavior to methods, classes. Or you would use libraries such as Guava in order to support functional programming. Higher order functions were not supported. With the help of Lambdas, java.util.Function package in Java 8, things changed.
