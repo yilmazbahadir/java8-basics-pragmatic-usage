@@ -85,3 +85,23 @@ public interface Runnable {
      public abstract void run();
 }
 ```
+
+Lambdas are not compiled as Anonymous Inner Classes. When we examine byte code compiled, we see invokedynamic instruction is used.
+
+```java
+  public sortLambda(java.util.List arg0) { //(Ljava/util/List;)V
+         <sig:(Ljava/util/List<Ljava/lang/String;>;)V>         <localVar:index=0 , name=this , desc=Lcom/avivasa/workshop/java8/lambda/LambdaBasicExample;, sig=null, start=L1, end=L2>
+         <localVar:index=1 , name=list , desc=Ljava/util/List;, sig=Ljava/util/List<Ljava/lang/String;>;, start=L1, end=L2>
+
+         L1 {
+             aload1
+             invokedynamic compare(java.util.Comparator);
+             invokeinterface java/util/List sort((Ljava/util/Comparator;)V);
+         }
+         L3 {
+             return
+         }
+         L2 {
+         }
+     }
+```     
