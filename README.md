@@ -48,18 +48,10 @@ for (int j = 0; j < array.length; j++)
 {
     for (int k = j + 1; k < array.length; k++) 
     {
-        if (k != j && array[k] == array[j])
-        {
-            sum = sum + array[k];
-            System.out.println(
-                "Duplicate found: "
-              + array[k]
-              + " "
-              + "Sum of the duplicate value is " + sum);
-        }
     }
 }
-``` | the other part |
+``` 
+| the other part |
 
 
 Before Java 8 all we could do was to mimic functional style programming in Java. You would use anonymous inner classes to pass behavior to methods, classes. Or you would use libraries such as Guava in order to support functional programming. Higher order functions were not supported. With the help of Lambdas, java.util.Function package in Java 8, things changed.
