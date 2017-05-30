@@ -66,17 +66,14 @@ Every Lambda expression can be implemented as Anonymous inner class. Basicly we 
 
 A lambda expression looks like
 ```
-** ( method's parameter ) -> ( method's body ) **
+( method's parameter ) -> ( method's body ) 
 
 
-When **no** parameters
-> () -> {}  
+When no parameters:  () -> {}  
 
-When **only one** parameter
->t -> {}
+When only one parameter: t -> {}
 
-When **multiple** paramters
->(t, k) -> {}
+When multiple paramters: (t, k) -> {}
 
 
 ```
