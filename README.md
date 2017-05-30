@@ -104,4 +104,85 @@ Lambdas are not compiled as Anonymous Inner Classes. When we examine byte code c
          L2 {
          }
      }
-```     
+```
+
+| Anonymous Inner Class | Lambda |
+|-----------------------|--------|
+|this refers to inner class | this refers to the enclosing class|
+|shadowing variables is possible|shadowing variables is impossible|
+|explicitly specify the class | no need to specify, it is inferred from the context|
+
+
+#### Functional Interfaces
+
+Although it is possible to write your own functional interfaces, in most cases you don't need. Because there are
+predefined Functional interfaces and they are placed in **java.util.function** package.
+
+##### java.util.function.Function<T, R>
+
+Represents a function that accepts one argument and produces a result.
+
+Function is
+```java
+R apply(T t);
+```
+
+Example usage:
+```java
+Function<String, String> trimmer = str -> str.trim(); 
+```
+
+##### java.util.function.Predicate<T>
+
+Represents a predicate (boolean-valued function) of one argument.
+
+Function is
+```java
+boolean test(T t); 
+```
+
+##### java.util.function.Consumer<T>
+
+Accepts a single input argument and returns no result.
+
+Function is
+```java
+void accept(T t); 
+```
+##### java.util.function.Supplier<T>
+
+Takes no parameter, returns result.
+
+Function is
+```java
+T get(); 
+```
+##### java.util.function.BiConsumer<T,U>
+
+Accepts 2 parameters, returns no result.
+
+Function is
+```java
+void accept(T t, U u); 
+```
+
+##### Double Colon(::) Operator
+:: Operator is shorthand for lambdas and is introduced in Java 8.
+
+Instead of
+`Function<String, Integer> strToLength = str -> str.length();`
+We can use
+`Function<String, Integer> strToLength = String::length;`
+
+As you notice in first statement function takes str as parameter and returns result of the length method call. In second statement it takes a string object and returns length method call result as well with :: operator. 
+
+```java 
+Consumer<String> strToPrint = (s) -> System.out.println(s);
+
+// becomes
+
+Consumer<String> strToPrint = System.out::println;
+```
+In the code block above, lambda takes an input and returns no result, that corresponds a java.util.function.Consumer functional interface, not java.util.function.Function.
+
+>Double colon(::) operator does not mean it always references a java.util.function.Function, it must be represented as matching functional interface according to inputs and the result. 
