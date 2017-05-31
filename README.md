@@ -349,5 +349,10 @@ public static <T>
 
 In our example as you notice stream is an Integer stream. So T, type of stream element, is Integer. R, return type, is List<Interger>. A, intermediate operator(accumulator) type, is also List<Integer>. 
 
-As further explanation, supplier constructs a new ArrayList, accumulator takes the empty list and add a item from the stream. Combiner takes two ArrayLists and returns the merged list. This goes on till the last item on the stream.
+As further explanation, supplier supplies a new ArrayList, accumulator takes the ArrayList and add a item from the stream. Combiner takes two ArrayLists and returns the merged list. This goes on till the last item on the stream.
+
+#### Common methods of java.util.stream.Collectors
+
+
+
 
