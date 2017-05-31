@@ -351,8 +351,39 @@ In our example as you notice stream is an Integer stream. So T, type of stream e
 
 As further explanation, `supplier` supplies a new ArrayList, `accumulator` takes the ArrayList and add a item from the stream. `Combiner` takes two ArrayLists and returns the merged list. This goes on till the last item on the stream.
 
-#### Common methods of java.util.stream.Collectors
+### Common methods of java.util.stream.Collectors
 
 
+#### toList()
 
+#### toSet()
 
+#### joining(CharSequence)
+
+#### mapping(Function<? super T, ? extends U>, Collector<? super U, A, R>)
+
+#### collectingAndThen(Collector<T, A, R>, Function<R, RR>)
+
+#### counting()
+
+#### minBy(Comparator<? super T>)
+
+#### maxBy(Comparator<? super T>)
+
+#### summingInt(ToIntFunction<? super T>)
+
+#### averagingInt(ToIntFunction<? super T>)
+
+#### reducing(BinaryOperator<T>)
+
+#### groupingBy(Function<? super T, ? extends K>)
+
+#### partitioningBy(Predicate<? super T>)
+
+#### toMap(Function<? super T, ? extends K>, Function<? super T, ? extends U>)
+
+#### toMap(Function<? super T, ? extends K>, Function<? super T, ? extends U>, BinaryOperator<U>, Supplier<M>)
+
+#### toConcurrentMap(Function<? super T, ? extends K>, Function<? super T, ? extends U>)
+
+#### summarizingInt(ToIntFunction<? super T>)
