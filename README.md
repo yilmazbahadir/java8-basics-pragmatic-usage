@@ -358,6 +358,10 @@ As further explanation, `supplier` supplies a new ArrayList, `accumulator` takes
 
 #### toSet()
 
+#### toMap(Function<? super T, ? extends K>, Function<? super T, ? extends U>)
+
+#### toConcurrentMap(Function<? super T, ? extends K>, Function<? super T, ? extends U>)
+
 #### joining(CharSequence)
 
 #### mapping(Function<? super T, ? extends U>, Collector<? super U, A, R>)
@@ -379,11 +383,5 @@ As further explanation, `supplier` supplies a new ArrayList, `accumulator` takes
 #### groupingBy(Function<? super T, ? extends K>)
 
 #### partitioningBy(Predicate<? super T>)
-
-#### toMap(Function<? super T, ? extends K>, Function<? super T, ? extends U>)
-
-#### toMap(Function<? super T, ? extends K>, Function<? super T, ? extends U>, BinaryOperator<U>, Supplier<M>)
-
-#### toConcurrentMap(Function<? super T, ? extends K>, Function<? super T, ? extends U>)
 
 #### summarizingInt(ToIntFunction<? super T>)
