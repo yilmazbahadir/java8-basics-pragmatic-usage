@@ -5,16 +5,16 @@ Java8 Basics and Pragmatic Usage with Examples
 
 ## Focusing on
 	
-* [Interface : default and static methods](#default-static-methods-interface)
+* [default and static methods in Interface](#default-and-static-methods-in-interface)
 * [Functional programming paradigm](#functional-programming-paradigm)
-* [Lambdas](#lamdas)
+* [Lambdas](#lambdas)
 * [Streams](#streams)
 * [Collectors](#collectors)
 * [Optionals](#optionals)
    
 -----------
 
-### Interface: default and static methods
+### default and static methods in Interface
 
 - default methods
 	- extends the interface without the fear of breaking inheritance chain
@@ -214,6 +214,7 @@ Stream manipulation can be done in a single thread using `stream()` method or in
 >There are predefined stream classes for primitive data types such as IntStream, DoubleStrem, LongStream.  
  
  There are 2 types of operations available on streams. `intermediate` and `terminal` operations.
+ We are examining the essential methods of Stream interface below.
  
 #### Intermediate Operations
 
@@ -298,8 +299,12 @@ Performs an action for each element of the stream.
 #### Terminal Operations Cheat Sheet
 |Function|Output|When to use|
 |-------|-------|-------|
-|reduce|conrete type|to cumulate elements|
+|reduce|concrete type|to cummulate elements|
 |collect|list, map or set|to group elements|
 |forEach|side effect(method invoke,sysout etc.)| to perform a side effect on elements|
 
  
+ 
+ ###Collectors
+ 
+ In Java 8 Collector interface is 
