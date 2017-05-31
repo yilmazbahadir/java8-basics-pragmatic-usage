@@ -186,3 +186,79 @@ Consumer<String> strToPrint = System.out::println;
 In the code block above, lambda takes an input and returns no result, that corresponds a java.util.function.Consumer functional interface, not java.util.function.Function.
 
 >Double colon(::) operator does not mean it always references a java.util.function.Function, it must be represented as matching functional interface according to inputs and the result. 
+
+### Streams
+
+Stream API  which is introduced with Java 8, is a abstraction for operations over Collections in a functional manner where Collection API is a abstraction for data structure.
+
+> A stream is a pipeline of functions that can be evaluated.
+
+* A stream is not a data structure.
+* Streams cannot mutate data.
+
+This how we convert any collection to stream:
+```java
+List<String> numberList = Arrays.asList("1", "2", "3", "4");
+numberList.stream(); // or numberList.parallelStream();
+```
+
+If we don't have any collection then:
+```java
+Stream.of("1", "2", "3", "4"); // Stream.of("1", "2", "3", "4").parallel();
+
+```
+  
+Stream manipulation can be done in a single thread using `stream()` method or in concurrently using `parallelStream()` method.
+
+>There are predefined stream classes for primitive data types such as IntStream, DoubleStrem, LongStream.  
+ 
+ There are 2 types of operations available on streams. `intermediate` and `terminal` operations.
+ 
+#### Intermediate Operations
+
+* Always return streams
+* Lazily executed
+
+##### map
+Maps one type of stream to another. Executes a function for all of the elements in the stream.
+
+A code snippet transforms int stream to string stream
+```java
+IntStream.range(1,6).boxed().map(Object::toString).forEach(System.out::print);
+// prints 12345
+```
+##### filter
+Filters the element of the stream that match the given predicate.
+```java
+IntStream.range(1,6).filter(n -> n > 3).boxed().map(Object::toString).forEach(System.out::print);
+//prints 45 
+```
+
+##### distinct
+Returns a stream consisting of the distinct elements (according to Object.equals(Object)) of this stream.
+
+##### limit
+Returns a stream consisting of the elements of this stream, truncated to be no longer than maxSize in length.
+
+##### sorted
+Sorts a stream based on natural order or Comparator given.
+
+```java
+Stream.of(1,3,5,4,2).sorted().map(Object::toString).forEach(System.out::print);
+// prints 12345
+```
+##### peek
+Allows you to run a consumer(takes 1 parameter, no result) operation on each element while returning exact same stream.
+
+```java
+Stream.of(1,3,5,4,2).sorted().map(Object::toString).peek(t -> System.out.print(".")).forEach(System.out::print);
+// prints .1.2.3.4.5
+```
+
+#### Terminal Operations
+
+##### reduce
+##### collect
+##### forEach
+
+
