@@ -85,6 +85,7 @@ public interface Runnable {
      public abstract void run();
 }
 ```
+>@FunctionalInterface is not mandatory. It is a marker and it helps compiler to check fitness of the code in to functional interface pattern. 
 
 Lambdas are not compiled as Anonymous Inner Classes. When we examine byte code compiled, we see invokedynamic instruction is used.
 
@@ -291,3 +292,5 @@ Performs an action for each element of the stream.
  IntStream.range(1, 4).boxed().forEach(System.out::println);
  //prints 123
 ```
+
+>Intermediate operations won't run unless there is a Terminal Operation on that stream. 
