@@ -224,18 +224,23 @@ Stream manipulation can be done in a single thread using `stream()` method or in
 ##### map
 Maps one type of stream to another. Executes a function for all of the elements in the stream.
 
-A code snippet transforms int stream to string stream
+A code snippet transforms int stream to String stream
 ```java
 IntStream.range(1,6).boxed().map(Object::toString).forEach(System.out::print);
 // prints 12345
 ```
 ##### flatMap
 
-
-A code snippet transforms int stream to string stream
+Stream operations (filter, sum, distinct…) and collectors do not support operation on Stream<String[]>, Stream<Set<String>>, Stream<List<String>>. 
+We use `flatMap` to do these conversions :
+```
+Stream<String[]>		-> flatMap ->	Stream<String>
+Stream<Set<String>>	-> flatMap ->	Stream<String>
+Stream<List<Object>>	-> flatMap ->	Stream<Object>
+```
+A code snippet transforms int[] stream to string stream
 ```java
-IntStream.range(1,6).boxed().map(Object::toString).forEach(System.out::print);
-// prints 12345
+Stream.of(new Integer[]{1,2}, new Integer[]{3, 4}, new Integer[]{5, 6}).flatMap(arr -> Arrays.stream(arr)).map(Object::toString).forEach(System.out::print);
 ```
 ##### filter
 Filters the element of the stream that match the given predicate.
@@ -264,6 +269,8 @@ Allows you to run a consumer(takes 1 parameter, no result) operation on each ele
 Stream.of(1,3,5,4,2).sorted().map(Object::toString).peek(t -> System.out.print(".")).forEach(System.out::print);
 // prints .1.2.3.4.5
 ```
+
+> Order of composing intermediate operations is essential //TODO give the orders, examples
 
 #### Intermediate Operations Cheat Sheet
 
@@ -316,7 +323,7 @@ Performs an action for each element of the stream.
 
  
  
- ###Collectors
+### Collectors
  
  In Java 8 `java.util.stream.Collector` interface is used in Stream.collect method in order to do perform mutable fold operations (repackaging elements to some data structures and applying some additional logic, concatenating them, etc.)
 
@@ -361,22 +368,71 @@ As further explanation, `supplier` supplies a new ArrayList, `accumulator` takes
 
 ### Common methods of java.util.stream.Collectors
 
+Let's examine methods through the sample Class of Stream
+```java
+public class Car {
+	private String brandName;
+	private String modelName;
+	private String modelYear;
+	private Oil oilType;
+	private double oilConsumptionPer100Km;
+	private BigDecimal price;
+}
+
+public enum Oil {
+	NORMAL, DIESEL
+}
+
+// in main method
+Car[] cars = new Cars[] { ...}; // Array of Cars
+```
 
 #### toList()
+Converts stream to same type of List.
+
+```java
+List<Car> carList = Stream.of(cars).collect(Collectors.toList());
+``` 
 
 #### toSet()
+Converts stream to same type of Set (distinct objects according to Object.equals)
+```java
+Set<Car> carList = Stream.of(cars).collect(Collectors.toSet());
+``` 
 
 #### toMap(Function<? super T, ? extends K>, Function<? super T, ? extends U>)
-
+Converts stream to Map with the help of keyMapper, valueMapper functions.
+```java
+Map<Integer> map = Stream.of(1,2,3,4,5).boxed().collect(Collectors.toMap());
+``` 
 #### toConcurrentMap(Function<? super T, ? extends K>, Function<? super T, ? extends U>)
-
+Converts stream to ConcurrentMap with the help of keyMapper, valueMapper functions.
+```java
+Map<Integer, Car> carMap = Stream.of(cars).collect(Collectors.toConcurrentMap(Car::getModelYear, t -> t));
+``` 
 #### joining(CharSequence)
+```java
+String modelsJoined = Stream.of(cars).map(Car::getModelName).collect(Collectors.joining(","));
+```
+#### groupingBy(Function<? super T, ? extends K>)
+```java
+Map<String, List<Car>> groupingCarsByBrandName = Stream.of(cars).collect(Collectors.groupingBy(Car::getBrandName));
+```
 
 #### mapping(Function<? super T, ? extends U>, Collector<? super U, A, R>)
+```java
+List<String> brandModelNameList = Stream.of(cars).collect(Collectors.mapping(car -> car.getBrandName() + "-" + car.getModelName(), Collectors.toList()));
+```
 
 #### collectingAndThen(Collector<T, A, R>, Function<R, RR>)
+```java
+List<String> unmodifiableBrandModelNameList = Stream.of(cars).collect(Collectors.collectingAndThen(Collectors.mapping(car -> car.getBrandName() + "-" + car.getModelName(), Collectors.toList()), (List<String> t) -> Collections.unmodifiableList(t)));
+```
 
 #### counting()
+```java
+long count = Stream.of(cars).collect(Collectors.counting());
+```
 
 #### minBy(Comparator<? super T>)
 
@@ -388,8 +444,10 @@ As further explanation, `supplier` supplies a new ArrayList, `accumulator` takes
 
 #### reducing(BinaryOperator<T>)
 
-#### groupingBy(Function<? super T, ? extends K>)
 
 #### partitioningBy(Predicate<? super T>)
 
 #### summarizingInt(ToIntFunction<? super T>)
+
+
+### Optionals
