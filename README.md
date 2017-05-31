@@ -59,7 +59,7 @@ Before Java 8 all we could do was to mimic functional style programming in Java.
 	- functions take functions as parameter or returns function
 - before Java 8 anonymous classes were used for behavior passing
 
-Every Lambda expression can be implemented as Anonymous inner class. Basicly we call an interface Functional if it has only one abstract method.
+Every Lambda expression can be implemented as Anonymous inner class. Basically, we call an interface **Functional** if it has **only one abstract method**.
 
 > When writing lambda expressions we should think about parameters and the returning value of the interface(functional) that it corresponds. 
 
@@ -73,7 +73,7 @@ When no parameters:  () -> {}
 
 When only one parameter: t -> {}
 
-When multiple paramters: (t, k) -> {}
+When multiple parameters: (t, k) -> {}
 
 
 ```
