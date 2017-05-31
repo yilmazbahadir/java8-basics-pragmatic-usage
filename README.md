@@ -229,6 +229,14 @@ A code snippet transforms int stream to string stream
 IntStream.range(1,6).boxed().map(Object::toString).forEach(System.out::print);
 // prints 12345
 ```
+##### flatMap
+
+
+A code snippet transforms int stream to string stream
+```java
+IntStream.range(1,6).boxed().map(Object::toString).forEach(System.out::print);
+// prints 12345
+```
 ##### filter
 Filters the element of the stream that match the given predicate.
 ```java
