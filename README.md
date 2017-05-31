@@ -256,9 +256,9 @@ Stream.of(1,3,5,4,2).sorted().map(Object::toString).peek(t -> System.out.print("
 // prints .1.2.3.4.5
 ```
 
-### Intermediate Operations Cheat Sheet
+#### Intermediate Operations Cheat Sheet
 
-|Function|Preserces count|Preserves type|Preserves order|
+|Function|Preserves count|Preserves type|Preserves order|
 |-------|-------|-------|-------|
 |map|+|-|+|
 |filter|-|+|+|
@@ -293,4 +293,12 @@ Performs an action for each element of the stream.
  //prints 123
 ```
 
->Intermediate operations won't run unless there is a Terminal Operation on that stream. 
+>Intermediate operations won't run unless there is a Terminal Operation on that stream.
+
+#### Terminal Operations Cheat Sheet
+|Function|Output|When to use|
+|reduce|conrete type|to cumulate elements|
+|collect|list, map or set|to group elements|
+|forEach|side effect(method invoke,sysout etc.)| to perform a side effect on elements|
+
+ 
