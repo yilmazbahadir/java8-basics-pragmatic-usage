@@ -255,10 +255,39 @@ Stream.of(1,3,5,4,2).sorted().map(Object::toString).peek(t -> System.out.print("
 // prints .1.2.3.4.5
 ```
 
+### Intermediate Operations Cheat Sheet
+
+|Function|Preserces count|Preserves type|Preserves order|
+|-------|-------|-------|-------|
+|map|+|-|+|
+|filter|-|+|+|
+|distinct|-|+|+|
+|sorted|+|+|+|
+|peek|+|+|+|
+
+
 #### Terminal Operations
 
+* Return concrete types or produce a side effect
+* Eagerly executed
+
 ##### reduce
+Performs a reduction on the elements of the stream. Result is single.
+
+```java
+  IntStream.range(1, 4).reduce((a, b) -> a + b).orElse(0); // 1 + 2 + 3 = 6
+```
 ##### collect
+Accumulates input elements into a mutable result container, such as Collection or StringBuilder through Collector implementation.
+
+```java
+ List<Integer> list = IntStream.range(1, 4).boxed().collect(Collectors.toList());
+```
+
 ##### forEach
+Performs an action for each element of the stream.
 
-
+```java
+ IntStream.range(1, 4).boxed().forEach(System.out::println);
+ //prints 123
+```

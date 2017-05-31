@@ -98,5 +98,6 @@ public class LambdaBasicExample {
 		*/
 		
 		Stream.of(1,3,5,4,2).sorted().map(Object::toString).peek(t -> System.out.print(".")).forEach(System.out::print);
+		
 	}
 }
