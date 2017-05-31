@@ -297,6 +297,7 @@ Performs an action for each element of the stream.
 
 #### Terminal Operations Cheat Sheet
 |Function|Output|When to use|
+|-------|-------|-------|
 |reduce|conrete type|to cumulate elements|
 |collect|list, map or set|to group elements|
 |forEach|side effect(method invoke,sysout etc.)| to perform a side effect on elements|
