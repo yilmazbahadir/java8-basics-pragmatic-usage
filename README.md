@@ -293,6 +293,9 @@ Performs an action for each element of the stream.
  IntStream.range(1, 4).boxed().forEach(System.out::println);
  //prints 123
 ```
+####sum
+
+####count
 
 >Intermediate operations won't run unless there is a Terminal Operation on that stream.
 
@@ -307,4 +310,44 @@ Performs an action for each element of the stream.
  
  ###Collectors
  
- In Java 8 Collector interface is 
+ In Java 8 `java.util.stream.Collector` interface is used in Stream.collect method in order to do perform mutable fold operations (repackaging elements to some data structures and applying some additional logic, concatenating them, etc.)
+
+>The purpose of the collector is to compose the data from the stream into one another type.
+
+ `java.util.stream.Collectors` is a utility class having various Collector interface implementations which enable us to do useful reduction operations, such as accumulating elements into collections, summarizing elements according to various criteria, etc.
+ 
+ A collector looks like: 
+ ```java
+ interface Collector<T,A,R> {
+    Supplier<A>          supplier()
+    BiConsumer<A,T>      accumulator()
+    BinaryOperator<A>    combiner()
+    Function<A,R>        finisher()
+    Set<Characteristics> characteristics()
+}
+```
+
+Let's examine all methods through an example:
+```java
+	List<Integer> list = IntStream.range(1,6).boxed().collect(Collectors.toList());
+```
+
+What does `Collectors.toList()` do here and how ? 
+
+```java
+public final class java.util.stream.Collectors {
+...
+public static <T>
+    Collector<T, ?, List<T>> toList() {
+        return new CollectorImpl<>((Supplier<List<T>>) ArrayList::new, List::add,
+                                   (left, right) -> { left.addAll(right); return left; },
+                                   CH_ID);
+    }
+...
+}    
+```
+
+In our example as you notice stream is an Integer stream. So T, type of stream element, is Integer. R, return type, is List<Interger>. A, intermediate operator(accumulator) type, is also List<Integer>. 
+
+As further explanation, supplier constructs a new ArrayList, accumulator takes the empty list and add a item from the stream. Combiner takes two ArrayLists and returns the merged list. This goes on till the last item on the stream.
+
