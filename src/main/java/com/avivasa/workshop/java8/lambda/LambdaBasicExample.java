@@ -86,18 +86,5 @@ public class LambdaBasicExample {
 		example.sortLambda(list2);
 		list2.stream().forEach((s) -> System.out.println("\t" + s));		
 
-		Stream.of("1").parallel();
-		
-		//IntStream.range(1,6).boxed().map(Object::toString).forEach(System.out::println);
-		
-		/*
-		IntStream.range(1,6).filter(n -> n > 3).boxed().map(Object::toString).forEach(System.out::print);
-		
-		Stream.of(1,3,5,4,2).sorted().map(Object::toString).forEach(System.out::print);
-		
-		*/
-		
-		Stream.of(1,3,5,4,2).sorted().map(Object::toString).peek(t -> System.out.print(".")).forEach(System.out::print);
-		
 	}
 }
