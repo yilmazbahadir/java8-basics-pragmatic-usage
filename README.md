@@ -293,9 +293,9 @@ Performs an action for each element of the stream.
  IntStream.range(1, 4).boxed().forEach(System.out::println);
  //prints 123
 ```
-####sum
+#### sum
 
-####count
+#### count
 
 >Intermediate operations won't run unless there is a Terminal Operation on that stream.
 
@@ -329,7 +329,7 @@ Performs an action for each element of the stream.
 
 Let's examine all methods through an example:
 ```java
-	List<Integer> list = IntStream.range(1,6).boxed().collect(Collectors.toList());
+List<Integer> list = IntStream.range(1,6).boxed().collect(Collectors.toList());
 ```
 
 What does `Collectors.toList()` do here and how ? 
@@ -347,9 +347,9 @@ public static <T>
 }    
 ```
 
-In our example as you notice stream is an Integer stream. So T, type of stream element, is Integer. R, return type, is List<Interger>. A, intermediate operator(accumulator) type, is also List<Integer>. 
+In our example as you notice stream is an Integer stream. So T, type of stream element, is Integer. R, return type, is List\<Integer\>. A, intermediate operator(accumulator) type, is also List\<Integer\>. 
 
-As further explanation, supplier supplies a new ArrayList, accumulator takes the ArrayList and add a item from the stream. Combiner takes two ArrayLists and returns the merged list. This goes on till the last item on the stream.
+As further explanation, `supplier` supplies a new ArrayList, `accumulator` takes the ArrayList and add a item from the stream. `Combiner` takes two ArrayLists and returns the merged list. This goes on till the last item on the stream.
 
 #### Common methods of java.util.stream.Collectors
 
