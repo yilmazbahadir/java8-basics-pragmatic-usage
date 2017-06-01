@@ -462,3 +462,41 @@ Map<Boolean, List<Car>> partitionedCarMap = Arrays.asList(cars).stream().collect
 
 
 ### Optionals
+
+Optional is an attempt to reduce the number of null pointer exceptions in Java systems.
+
+> If a function returns Optional object, it explicitly force you to think about null value and handle it.
+
+
+of/ofNullable: Create an Optional :
+```java
+Optional<String> optional = Optional.of(a); // must be non-null otherwise throws NullPointerException
+Optional<String> optionalNullable = Optional.ofNullable(a); // if null value then Optional.EMPTY is returned
+```
+
+present: Check value is present:
+
+```java
+Optional<String> optional = Optional.ofNullable(a);
+if(optional.isPresent()) {
+	// then
+}
+```
+get: If value is present returns the value 
+else throws NoSuchElementException
+```java
+Optional<String> optional = Optional.ofNullable(a);
+if(optional.isPresent()) {
+	String value = optional.get();
+}
+```
+
+
+map: If value is present, apply the mapping function and return optional
+else return empty optional 
+```java
+String s = "123";
+Optional<String> optional = Optional.ofNullable(a); 
+Optional<Integer> intOptional = optional.map(Integer::parseInt);
+```
+
