@@ -4,8 +4,10 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -81,6 +83,45 @@ public class StreamBasicExample {
 		System.out.println("Counting Cars:" + count);
 	}
 	
+	public void testCollectorsMinBy() {
+		Optional<Car> minByModelYear = Arrays.asList(cars).stream().collect(Collectors.minBy(Comparator.comparing(Car::getModelYear)));
+		//Arrays.asList(cars).stream().collect(Collectors.minBy((t,k) -> Integer.compare(t.getModelYear(), k.getModelYear()) ));
+		if(minByModelYear.isPresent()) {
+			Car car = minByModelYear.get();
+			System.out.println("Min By:" + car);
+		}
+	}
+	
+	public void testCollectorsMaxBy() {
+		Optional<Car> maxByModelYear = Arrays.asList(cars).stream().collect(Collectors.maxBy(Comparator.comparing(Car::getModelYear)));
+		if(maxByModelYear.isPresent()) {
+			Car car = maxByModelYear.get();
+			System.out.println("Max By:" + car);
+		}
+	}
+	
+	public void testcollectorsSummingDouble() {
+		System.out.println("SummingInt Group BrandName Sum Prices:");
+		Stream.of(cars).collect(Collectors.groupingBy(Car::getBrandName, Collectors.summingDouble(t -> t.getPrice().doubleValue()))).entrySet().forEach(System.out::println);;
+	}
+	
+	public void testCollectorsReducing() {
+		Optional<Car> maxByModelYear = Arrays.asList(cars).stream().collect(Collectors.reducing((t, k) -> Integer.compare(t.getModelYear(), k.getModelYear()) > 0 ? t : k ));
+		//Optional<Car> maxByModelYear2 = Arrays.asList(cars).stream().reduce((t, k) -> Integer.compare(t.getModelYear(), k.getModelYear()) > 0 ? t : k);
+		
+		if(maxByModelYear.isPresent()) {
+			Car car = maxByModelYear.get();
+			System.out.println("Max By Model Year reducing:" + car);
+		}
+	}
+	
+	
+	public void testCollectorsPartitioningBy() {
+		Map<Boolean, List<Car>> partitionedCarMap = Arrays.asList(cars).stream().collect(Collectors.partitioningBy(c -> c.getOilType() == Oil.DIESEL));
+		System.out.println("Partitioning By Oil Type:");
+		partitionedCarMap.entrySet().forEach(System.out::println);
+	}
+	
 	public static void main(String[] args) {
 		StreamBasicExample example = new StreamBasicExample();
 		example.testCollectorsToList();
@@ -92,6 +133,13 @@ public class StreamBasicExample {
 		example.testCollectorsMapping();
 		example.testCollectorsCollectingAndThen();
 		example.testCollectorsCounting();
+		example.testCollectorsMinBy();
+		example.testCollectorsMaxBy();
+		example.testcollectorsSummingDouble();
+		example.testCollectorsReducing();
+		example.testCollectorsPartitioningBy();
+		
+		
 		
 		//Stream.of(new Integer[]{1,2}, new Integer[]{3, 4}, new Integer[]{5, 6}).flatMap(arr -> Arrays.stream(arr)).forEach(System.out::print);
 		// !!! Stream.of(new int[]{1,2}, new int[]{3, 4}, new int[]{5, 6}).flatMap(arr -> Arrays.stream(arr)); gives Type mismatch: cannot convert from IntStream to Stream<? extends Object>

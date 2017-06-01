@@ -377,6 +377,7 @@ public class Car {
 	private Oil oilType;
 	private double oilConsumptionPer100Km;
 	private BigDecimal price;
+	private Map<String, String> owners;
 }
 
 public enum Oil {
@@ -435,19 +436,29 @@ long count = Stream.of(cars).collect(Collectors.counting());
 ```
 
 #### minBy(Comparator<? super T>)
+```java
+Optional<Car> minByModelYear = Arrays.asList(cars).stream().collect(Collectors.minBy(Comparator.comparing(Car::getModelYear)));
+```
 
 #### maxBy(Comparator<? super T>)
+```java
+Optional<Car> maxByModelYear = Arrays.asList(cars).stream().collect(Collectors.maxBy(Comparator.comparing(Car::getModelYear)));
+```
 
-#### summingInt(ToIntFunction<? super T>)
-
-#### averagingInt(ToIntFunction<? super T>)
+#### summingDouble(ToDoubleFunction<? super T> mapper)
+```java
+Stream.of(cars).collect(Collectors.groupingBy(Car::getBrandName, Collectors.summingDouble(t -> t.getPrice().doubleValue()))).entrySet().forEach(System.out::println);;
+```
 
 #### reducing(BinaryOperator<T>)
-
+```java
+Optional<Car> maxByModelYear = Arrays.asList(cars).stream().collect(Collectors.reducing((t, k) -> Integer.compare(t.getModelYear(), k.getModelYear()) > 0 ? t : k ));
+```
 
 #### partitioningBy(Predicate<? super T>)
-
-#### summarizingInt(ToIntFunction<? super T>)
+```java
+Map<Boolean, List<Car>> partitionedCarMap = Arrays.asList(cars).stream().collect(Collectors.partitioningBy(c -> c.getOilType() == Oil.DIESEL));
+```
 
 
 ### Optionals
