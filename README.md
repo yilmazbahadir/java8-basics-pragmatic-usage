@@ -309,10 +309,21 @@ Performs an action for each element of the stream.
  //prints 123
 ```
 #### sum
+Sums up all the primitive items in the stream(IntStream, DoubleStream).
+
+```java
+ int sum = Stream.of("1", "2", "3", "4").mapToInt(Integer::parseInt).sum();
+```
 
 #### count
+Returns the count of the elements in the stream.
+ 
+```java
+ int count = Stream.of("1", "2", "3", "4").mapToInt(Integer::parseInt).count();
+```
 
 >Intermediate operations won't run unless there is a Terminal Operation on that stream.
+
 
 #### Terminal Operations Cheat Sheet
 |Function|Output|When to use|
