@@ -15,8 +15,7 @@ Java8 Basics and Pragmatic Usage with Examples
 -----------
 
 
-### default and static methods in Interface
-----------
+## default and static methods in Interface
 
 - default methods
 	- extends the interface without the fear of breaking inheritance chain
@@ -31,8 +30,7 @@ Java8 Basics and Pragmatic Usage with Examples
 	- can not be overridden as it is for normal static methods	 
 
 
-### Functional Programming Paradigm
-----------
+## Functional Programming Paradigm
 
 The functional programming paradigm was explicitly created to support functional approach to problem solving.
 Functional programming is a type of declarative programming. Prior to Java 8, Java was more like a imperative(procedural) programming language.
@@ -55,8 +53,7 @@ Before Java 8 all we could do was to mimic functional style programming in Java.
 
 
 
-### Lambdas
-----------
+## Lambdas
 
 - functional style programming (imperative(procedural) -> declarative(functional))
 - make your code concise (short but easily understandable ?) 
@@ -195,8 +192,7 @@ In the code block above, lambda takes an input and returns no result, that corre
 >Double colon(::) operator does not mean it always references a java.util.function.Function, it must be represented as matching functional interface according to inputs and the result. 
 
 
-### Streams
-----------
+## Streams
 
 Stream API  which is introduced with Java 8, is a abstraction for operations over Collections in a functional manner where Collection API is a abstraction for data structure.
 
@@ -342,10 +338,9 @@ Returns the count of the elements in the stream.
 
  
  
-### Collectors
-----------
- 
- In Java 8 `java.util.stream.Collector` interface is used in Stream.collect method in order to do perform mutable fold operations (repackaging elements to some data structures and applying some additional logic, concatenating them, etc.)
+## Collectors
+
+In Java 8 `java.util.stream.Collector` interface is used in Stream.collect method in order to do perform mutable fold operations (repackaging elements to some data structures and applying some additional logic, concatenating them, etc.)
 
 >The purpose of the collector is to compose the data from the stream into one another type.
 
@@ -481,8 +476,7 @@ Map<Boolean, List<Car>> partitionedCarMap = Arrays.asList(cars).stream().collect
 ```
 
 
-### Optionals
-----------
+## Optionals
 
 Optional is an attempt to reduce the number of null pointer exceptions in Java systems.
 
