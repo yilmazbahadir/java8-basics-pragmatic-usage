@@ -1,5 +1,7 @@
 package com.avivasa.workshop.java8.stream;
 
+import static com.avivasa.workshop.java8.common.Car.cars;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,28 +19,21 @@ import com.avivasa.workshop.java8.common.Oil;
 
 public class StreamBasicExample {
 
-	private Car[] cars = { 
-			new Car("Audi", "a3", 2009, Oil.NORMAL, 8.00, BigDecimal.valueOf(56000.00), Stream.of("2009-2011@Bahadir Yilmaz", "2012-2017@Faruk Yalcin").collect(Collectors.toMap(k -> k.substring(0, k.indexOf('@')), v -> v.substring(v.indexOf('@') + 1, v.length())))),
-			new Car("Audi", "a3", 2011, Oil.DIESEL, 6.00, BigDecimal.valueOf(68000.00), Stream.of("2011-2013@Mehmet Yasin", "2014-2017@Vedat Milor").collect(Collectors.toMap(k -> k.substring(0, k.indexOf('@')), v -> v.substring(v.indexOf('@') + 1, v.length())))),
-			new Car("BMW", "1", 2014, Oil.NORMAL, 6.00, BigDecimal.valueOf(89000.00), Stream.of("2014-2017@Can Bonomo").collect(Collectors.toMap(k -> k.substring(0, k.indexOf('@')), v -> v.substring(v.indexOf('@') + 1, v.length()))))			
-	};
-	
-	
 	public void testCollectorsToList() {
 		List<Car> carList = Stream.of(cars).collect(Collectors.toList());
-		System.out.println("List of Cars:");
+		System.out.println("***List of Cars:");
 		carList.stream().forEach(System.out::println);
 	}
 	
 	public void testCollectorsToSet() {
 		Set<Car> carSet = Stream.of(cars).collect(Collectors.toSet());
-		System.out.println("Set of Cars:");
+		System.out.println("***Set of Cars:");
 		carSet.stream().forEach(System.out::println);
 	}
 	
 	public void testCollectorsToMap() {
 		Map<Integer, Car> carMap = Stream.of(cars).collect(Collectors.toMap(Car::getModelYear, t -> t));
-		System.out.println("Map of Cars:");
+		System.out.println("***Map of Cars:");
 		carMap.entrySet().forEach((e) -> System.out.println(e.getValue()));
 		
 		// adding a car which will be duplicate according to modelYear (2014)
@@ -51,36 +46,36 @@ public class StreamBasicExample {
 	
 	public void testCollectorsToConcurrentMap() {
 		Map<Integer, Car> carMap = Stream.of(cars).collect(Collectors.toConcurrentMap(Car::getModelYear, t -> t));
-		System.out.println("ConcurrentMap of Cars:");
+		System.out.println("***ConcurrentMap of Cars:");
 		carMap.entrySet().forEach((e) -> System.out.println(e.getValue()));
 	}
 	
 	public void testCollectorsJoining() {
 		String modelsJoined = Stream.of(cars).map(Car::getModelName).collect(Collectors.joining(","));
-		System.out.println("Joining modelNames:" + modelsJoined);
+		System.out.println("***Joining modelNames:" + modelsJoined);
 	}
 	
 	public void testCollectorsGroupingBy() {
 		Map<String, List<Car>> groupingCarsByBrandName = Stream.of(cars).collect(Collectors.groupingBy(Car::getBrandName));
-		System.out.println("Grouping Cars By Brand Name:");
+		System.out.println("***Grouping Cars By Brand Name:");
 		groupingCarsByBrandName.entrySet().forEach(System.out::println);
 	}
 	
 	public void testCollectorsMapping() {
 		List<String> brandModelNameList = Stream.of(cars).collect(Collectors.mapping(car -> car.getBrandName() + "-" + car.getModelName(), Collectors.toList()));
-		System.out.println("Mapping Brand-Model Name:");
+		System.out.println("***Mapping Brand-Model Name:");
 		brandModelNameList.forEach(System.out::println);
 	}
 	
 	public void testCollectorsCollectingAndThen() {
 		List<String> unmodifiableBrandModelNameList = Stream.of(cars).collect(Collectors.collectingAndThen(Collectors.mapping(car -> car.getBrandName() + "-" + car.getModelName(), Collectors.toList()), (List<String> t) -> Collections.unmodifiableList(t)));
-		System.out.println("CollectingAndThen Brand-Model Name:");
+		System.out.println("***CollectingAndThen Brand-Model Name:");
 		unmodifiableBrandModelNameList.forEach(System.out::println);
 	}
 	
 	public void testCollectorsCounting() {
 		long count = Stream.of(cars).collect(Collectors.counting());
-		System.out.println("Counting Cars:" + count);
+		System.out.println("***Counting Cars:" + count);
 	}
 	
 	public void testCollectorsMinBy() {
@@ -88,7 +83,7 @@ public class StreamBasicExample {
 		//Arrays.asList(cars).stream().collect(Collectors.minBy((t,k) -> Integer.compare(t.getModelYear(), k.getModelYear()) ));
 		if(minByModelYear.isPresent()) {
 			Car car = minByModelYear.get();
-			System.out.println("Min By:" + car);
+			System.out.println("***Min By:" + car);
 		}
 	}
 	
@@ -96,12 +91,12 @@ public class StreamBasicExample {
 		Optional<Car> maxByModelYear = Arrays.asList(cars).stream().collect(Collectors.maxBy(Comparator.comparing(Car::getModelYear)));
 		if(maxByModelYear.isPresent()) {
 			Car car = maxByModelYear.get();
-			System.out.println("Max By:" + car);
+			System.out.println("***Max By:" + car);
 		}
 	}
 	
 	public void testcollectorsSummingDouble() {
-		System.out.println("SummingInt Group BrandName Sum Prices:");
+		System.out.println("***SummingInt Group BrandName Sum Prices:");
 		Stream.of(cars).collect(Collectors.groupingBy(Car::getBrandName, Collectors.summingDouble(t -> t.getPrice().doubleValue()))).entrySet().forEach(System.out::println);;
 	}
 	
@@ -111,16 +106,18 @@ public class StreamBasicExample {
 		
 		if(maxByModelYear.isPresent()) {
 			Car car = maxByModelYear.get();
-			System.out.println("Max By Model Year reducing:" + car);
+			System.out.println("***Max By Model Year reducing:" + car);
 		}
 	}
 	
 	
 	public void testCollectorsPartitioningBy() {
 		Map<Boolean, List<Car>> partitionedCarMap = Arrays.asList(cars).stream().collect(Collectors.partitioningBy(c -> c.getOilType() == Oil.DIESEL));
-		System.out.println("Partitioning By Oil Type:");
+		System.out.println("***Partitioning By Oil Type:");
 		partitionedCarMap.entrySet().forEach(System.out::println);
 	}
+	
+	
 	
 	public static void main(String[] args) {
 		StreamBasicExample example = new StreamBasicExample();

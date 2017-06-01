@@ -158,6 +158,11 @@ Function is
 boolean test(T t); 
 ```
 
+Example usage:
+```java
+Predicate<Boolean> p = t -> true;
+```
+
 ##### java.util.function.Consumer<T>
 
 Accepts a single input argument and returns no result.
@@ -166,6 +171,12 @@ Function is
 ```java
 void accept(T t); 
 ```
+
+Example usage:
+```java
+Consumer<String> c = t -> {};
+```
+
 ##### java.util.function.Supplier<T>
 
 Takes no parameter, returns result.
@@ -174,6 +185,26 @@ Function is
 ```java
 T get(); 
 ```
+
+Example usage:
+```java
+Supplier<List<String>> s = () -> new ArrayList<String>();
+```
+
+##### java.lang.Runnable
+
+Takes no parameters, returns no result.
+
+Function is
+```java
+void run(); 
+```
+
+Example usage:
+```java
+Runnable r = () -> {};
+```
+
 ##### java.util.function.BiConsumer<T,U>
 
 Accepts 2 parameters, returns no result.
@@ -182,6 +213,7 @@ Function is
 ```java
 void accept(T t, U u); 
 ```
+
 
 ##### Double Colon(::) Operator
 :: Operator is shorthand for lambdas and is introduced in Java 8.
@@ -511,7 +543,7 @@ Optional<String> optional = Optional.of(a); // must be non-null otherwise throws
 Optional<String> optionalNullable = Optional.ofNullable(a); // if null value then Optional.EMPTY is returned
 ```
 
-**present**: Check value is present:
+**isPresent**: Check value is present:
 
 ```java
 Optional<String> optional = Optional.ofNullable(a);
