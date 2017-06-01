@@ -15,6 +15,9 @@ Java8 Basics and Pragmatic Usage with Examples
 -----------
 
 
+
+
+
 ## default and static methods in Interface
 
 - default methods
@@ -28,6 +31,9 @@ Java8 Basics and Pragmatic Usage with Examples
 - static methods 
 	- only be called through the interface or class type reference, not an instance variable
 	- can not be overridden as it is for normal static methods	 
+
+
+
 
 
 ## Functional Programming Paradigm
@@ -50,6 +56,10 @@ Before Java 8 all we could do was to mimic functional style programming in Java.
 | Order of execution	|Important.	 |Low importance. |
 |Primary flow control	 | Loops, conditionals, and function (method) calls.	| Function calls, including recursion.|
 | Primary manipulation unit	|Instances of structures or classes.	 | Functions as first-class objects and data collections.|
+
+
+
+
 
 
 
@@ -115,6 +125,9 @@ Lambdas are not compiled as Anonymous Inner Classes. When we examine byte code c
 |this refers to inner class | this refers to the enclosing class|
 |shadowing variables is possible|shadowing variables is impossible|
 |explicitly specify the class | no need to specify, it is inferred from the context|
+
+
+
 
 
 #### Functional Interfaces
@@ -190,6 +203,9 @@ Consumer<String> strToPrint = System.out::println;
 In the code block above, lambda takes an input and returns no result, that corresponds a java.util.function.Consumer functional interface, not java.util.function.Function.
 
 >Double colon(::) operator does not mean it always references a java.util.function.Function, it must be represented as matching functional interface according to inputs and the result. 
+
+
+
 
 
 ## Streams
@@ -338,6 +354,9 @@ Returns the count of the elements in the stream.
 
  
  
+
+
+
 ## Collectors
 
 In Java 8 `java.util.stream.Collector` interface is used in Stream.collect method in order to do perform mutable fold operations (repackaging elements to some data structures and applying some additional logic, concatenating them, etc.)
@@ -474,6 +493,9 @@ Optional<Car> maxByModelYear = Arrays.asList(cars).stream().collect(Collectors.r
 ```java
 Map<Boolean, List<Car>> partitionedCarMap = Arrays.asList(cars).stream().collect(Collectors.partitioningBy(c -> c.getOilType() == Oil.DIESEL));
 ```
+
+
+
 
 
 ## Optionals
