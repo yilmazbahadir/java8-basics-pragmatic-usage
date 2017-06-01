@@ -12,7 +12,7 @@ public class Car {
 			new Car("Audi", "a3", 2011, Oil.DIESEL, 6.00, BigDecimal.valueOf(68000.00), Stream.of("2011-2013@Mehmet Yasin", "2014-2017@Vedat Milor").collect(Collectors.toMap(k -> k.substring(0, k.indexOf('@')), v -> v.substring(v.indexOf('@') + 1, v.length())))),
 			new Car("BMW", "1", 2014, Oil.NORMAL, 6.00, BigDecimal.valueOf(89000.00), Stream.of("2014-2017@Can Bonomo").collect(Collectors.toMap(k -> k.substring(0, k.indexOf('@')), v -> v.substring(v.indexOf('@') + 1, v.length()))))			,
 			new Car("Renault", "Clio", 2012, Oil.DIESEL, 7.00, BigDecimal.valueOf(40000.00), Stream.of("2012-2014@Gunes Kahraman", "2015-2017@Volkan Yungul").collect(Collectors.toMap(k -> k.substring(0, k.indexOf('@')), v -> v.substring(v.indexOf('@') + 1, v.length())))),
-			new Car("Ferrari", "F430", 2013, Oil.NORMAL, 16.00, BigDecimal.valueOf(40000.00), Stream.of("2013-2014@Cem Yilmaz", "2015-2017@Okan Bayulgen").collect(Collectors.toMap(k -> k.substring(0, k.indexOf('@')), v -> v.substring(v.indexOf('@') + 1, v.length()))))
+			new Car("Ferrari", "F430", 2013, Oil.NORMAL, 16.00, BigDecimal.valueOf(500000.00), Stream.of("2013-2014@Cem Yilmaz", "2015-2017@Okan Bayulgen").collect(Collectors.toMap(k -> k.substring(0, k.indexOf('@')), v -> v.substring(v.indexOf('@') + 1, v.length()))))
 	};
 	
 	private String brandName;

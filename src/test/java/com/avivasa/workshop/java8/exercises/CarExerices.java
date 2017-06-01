@@ -22,7 +22,7 @@ public class CarExerices {
 	 * Sort the cars according to the oilConsumption in desc order
 	 * */
 	@Test
-	public void sortCarsConsuptionDesc() {
+	public void sortCarsConsumptionDesc() {
 		//TODO implement this 
 	}
 	
@@ -42,19 +42,28 @@ public class CarExerices {
 		//TODO implement this 
 	}
 	
+	
 	/**
-	 * Find the car Cem Yilmaz owned
+	 * List the car owner names
 	 * */
 	@Test
-	public void findTheCarCemYilmazOwned() {
+	public void listTheCarOwnerNames() {
+		//TODO implement this
+	}
+	
+	/**
+	 * Find date ranges Cem Yilmaz owned a car
+	 * */
+	@Test
+	public void findDateRangesCemYilmazOwned() {
 		//TODO
 	}
 	
 	/**
-	 * Find the cars owned between 2011-2015 in "brandName,modelName,owner" format  
+	 * print the owners between 2011-2015
 	 * */
 	@Test
-	public void findTheCarsOwned2011_2015() {
-		//TODO
+	public void printTheOwners2011_2015() {
+		
 	}
 }
